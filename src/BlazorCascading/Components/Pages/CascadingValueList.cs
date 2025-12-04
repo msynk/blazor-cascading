@@ -2,7 +2,7 @@ namespace BlazorCascading.Components.Pages;
 
 public class CascadingValueList : List<CascadingValueRecord>
 {
-    public void Add<T>(string? name, T value) => Add(CascadingValueRecord.From(name, value));
+    public new void Add<T>(T value, string? name = null) => base.Add(CascadingValueRecord.From(value, name));
 
-    public void Add(string? name, object? value, Type valueType) => Add(CascadingValueRecord.From(name, value, valueType));
+    public void Add(object? value, string? name, Type valueType) => Add(CascadingValueRecord.From(value, name, valueType));
 }

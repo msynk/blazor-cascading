@@ -16,17 +16,20 @@ public class ManualProvider : ComponentBase
         current = b => CreateCascadingValue(b, 8, "Gender", v, p1);
 
         var p2 = current;
-        current = b => CreateCascadingValue(b, 4, "Age", 41, p2);
+        current = b => CreateCascadingValue(b, 4, null, 41, p2);
 
-        CreateCascadingValue(builder, 0, "Name", "Saleh Xafan", current);
+        CreateCascadingValue(builder, 0, null, "Saleh Xafan", current);
 
         base.BuildRenderTree(builder);
     }
 
-    public static void CreateCascadingValue<T>(RenderTreeBuilder builder, int seq, string name, T value, RenderFragment child)
+    public static void CreateCascadingValue<T>(RenderTreeBuilder builder, int seq, string? name, T value, RenderFragment child)
     {
         builder.OpenComponent<CascadingValue<T>>(seq);
-        builder.AddComponentParameter(++seq, "Name", name);
+        if (name is not null)
+        {
+            builder.AddComponentParameter(++seq, "Name", name);
+        }
         builder.AddComponentParameter(++seq, "Value", value);
         builder.AddComponentParameter(++seq, "ChildContent", child);
         builder.CloseComponent();
