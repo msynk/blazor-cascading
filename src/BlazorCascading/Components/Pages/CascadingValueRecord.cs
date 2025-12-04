@@ -14,6 +14,4 @@ public class CascadingValueRecord
     public Type ValueType { get; }
 
     public static CascadingValueRecord From<T>(T value, string? name = null) => new(value, name, typeof(T));
-
-    public static CascadingValueRecord From(object? value, string? name, Type valueType) => new(value, name, valueType);
 }
