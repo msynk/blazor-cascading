@@ -1,7 +1,6 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 
-
 <CascadingValue Name="Name" Value="@("Saleh Xafan")">
     <CascadingValue Name="Age" Value="41">
         <CascadingValue Name="Gender" Value="v">
@@ -24,7 +23,7 @@
 
 @code {
     static string? v = null;
-    private List<CascadingValueRecord> values = new CascadingValueList
+    private CascadingValueList values = new()
     {
         { "Name", "Saleh Xafan" },
         { "Age", 41 },

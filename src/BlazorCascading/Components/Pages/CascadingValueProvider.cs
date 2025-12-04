@@ -5,7 +5,7 @@ namespace BlazorCascading.Components.Pages;
 
 public class CascadingValueProvider : ComponentBase
 {
-    [Parameter] public List<CascadingValueRecord> Values { get; set; } = [];
+    [Parameter] public CascadingValueList Values { get; set; } = [];
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
