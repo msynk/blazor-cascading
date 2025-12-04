@@ -18,6 +18,11 @@
 
 <hr />
 
-<CascadingValueProvider Values="@(new() { new("Name", "Saleh Xafan"), new("Age", 41), new("Gender", null, typeof(string)) })">
+<CascadingValueProvider Values="values">
     <CascadingParam Title="CascadingValueProvider" />
 </CascadingValueProvider>
+
+@code {
+    static string? v = null;
+    private List<CascadingValueRecord> values = new() { new("Name", "Saleh Xafan"), new("Age", 41), new("Gender", v, typeof(string)) };
+}
