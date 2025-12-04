@@ -1,0 +1,23 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+
+<CascadingValue Name="Name" Value="@("Saleh Xafan")">
+    <CascadingValue Name="Age" Value="41">
+        <CascadingValue Name="Gender" Value="@("Male")">
+            <Cascading />
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>
+
+<hr />
+
+<CascadingValueProvider Values=@(new() { ("Name", "Saleh Xafan"), ("Age", 41), ("Gender", "Male") })>
+    <Cascading />
+</CascadingValueProvider>
+
+<hr />
+
+<ManualProvider>
+    <Cascading />
+</ManualProvider>
