@@ -31,9 +31,7 @@ public class CascadingValueProvider : ComponentBase
 
     public static void CreateCascadingValue(RenderTreeBuilder builder, int seq, CascadingValueRecord value, RenderFragment? innerBuilder)
     {
-        //builder.OpenComponent(seq, _cascadingValueType.MakeGenericType(value.GetType()));
         builder.OpenComponent(seq, _cascadingValueType.MakeGenericType(value.ValueType));
-
         builder.AddComponentParameter(seq++, "Name", value.Name);
         builder.AddComponentParameter(seq++, "Value", value.Value);
         builder.AddComponentParameter(seq++, "ChildContent", innerBuilder);
