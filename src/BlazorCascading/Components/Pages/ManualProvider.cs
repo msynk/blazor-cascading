@@ -12,7 +12,7 @@ public class ManualProvider : ComponentBase
         var current = ChildContent;
 
         var p1 = current;
-        current = b => CreateCascadingValue(b, 8, "Gender", "Male", p1);
+        current = b => CreateCascadingValue<string?>(b, 8, "Gender", null, p1);
 
         var p2 = current;
         current = b => CreateCascadingValue(b, 4, "Age", 41, p2);

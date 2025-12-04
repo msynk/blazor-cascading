@@ -18,6 +18,6 @@
 
 <hr />
 
-<CascadingValueProvider Values="@(new() { ("Name", "Saleh Xafan"), ("Age", 41), ("Gender", "Male") })">
+<CascadingValueProvider Values="@(new() { new("Name", "Saleh Xafan"), new("Age", 41), new("Gender", null, typeof(string)) })">
     <CascadingParam Title="CascadingValueProvider" />
 </CascadingValueProvider>

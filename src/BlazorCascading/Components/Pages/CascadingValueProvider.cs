@@ -3,9 +3,23 @@ using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BlazorCascading.Components.Pages;
 
+public class CascadingValueRecord
+{
+    public CascadingValueRecord(string? name, object? value, Type? valuetype = null)
+    {
+        Name = name;
+        Value = value;
+        ValueType = valuetype ?? value?.GetType() ?? throw new InvalidOperationException("Value type is missing");
+    }
+
+    public string? Name { get; }
+    public object? Value { get; }
+    public Type ValueType { get; }
+}
+
 public class CascadingValueProvider : ComponentBase
 {
-    [Parameter] public List<(string Name, object Value)> Values { get; set; } = [];
+    [Parameter] public List<CascadingValueRecord> Values { get; set; } = [];
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
@@ -19,21 +33,23 @@ public class CascadingValueProvider : ComponentBase
         {
             var item = list[i];
             var prev = current;
-            current = b => CreateCascadingValue(b, i * 4, item.Name, item.Value, prev);
+            current = b => CreateCascadingValue(b, i * 4, item, prev);
         }
 
-        CreateCascadingValue(builder, 0, list[0].Name, list[0].Value, current);
+        CreateCascadingValue(builder, 0, list[0], current);
 
         base.BuildRenderTree(builder);
     }
 
     private static readonly Type _cascadingValueType = typeof(CascadingValue<>);
 
-    public static void CreateCascadingValue(RenderTreeBuilder builder, int seq, string name, object value, RenderFragment? innerBuilder)
+    public static void CreateCascadingValue(RenderTreeBuilder builder, int seq, CascadingValueRecord value, RenderFragment? innerBuilder)
     {
-        builder.OpenComponent(seq, _cascadingValueType.MakeGenericType(value.GetType()));
-        builder.AddComponentParameter(seq++, "Name", name);
-        builder.AddComponentParameter(seq++, "Value", value);
+        //builder.OpenComponent(seq, _cascadingValueType.MakeGenericType(value.GetType()));
+        builder.OpenComponent(seq, _cascadingValueType.MakeGenericType(value.ValueType));
+
+        builder.AddComponentParameter(seq++, "Name", value.Name);
+        builder.AddComponentParameter(seq++, "Value", value.Value);
         builder.AddComponentParameter(seq++, "ChildContent", innerBuilder);
         builder.CloseComponent();
     }
