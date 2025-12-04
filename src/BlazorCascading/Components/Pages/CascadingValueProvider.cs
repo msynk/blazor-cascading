@@ -12,7 +12,6 @@ public class CascadingValueProvider : ComponentBase
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var list = Values;
-        //var list = new List<(string Name, object Value)> { ("Name", "Saleh Xafan"), ("Age", 41), ("Gender", "Male") };
 
         RenderFragment current = ChildContent;
 
@@ -24,9 +23,6 @@ public class CascadingValueProvider : ComponentBase
         }
 
         CreateCascadingValue(builder, 0, list[0].Name, list[0].Value, current);
-
-        //RenderFragment innerBuilder = (b2) => CreateCascadingValue(b2, 4, "Age", 41, ChildContent);
-        //CreateCascadingValue(builder, 0, "Name", "Saleh Xafan", innerBuilder);
 
         base.BuildRenderTree(builder);
     }

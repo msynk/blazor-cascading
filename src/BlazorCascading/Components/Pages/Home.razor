@@ -4,20 +4,20 @@
 
 <CascadingValue Name="Name" Value="@("Saleh Xafan")">
     <CascadingValue Name="Age" Value="41">
-        <CascadingValue Name="Gender" Value="@("Male")">
-            <Cascading />
+        <CascadingValue Name="Gender" Value="@(null)" TValue="string">
+            <CascadingParam Title="CascadingValue" />
         </CascadingValue>
     </CascadingValue>
 </CascadingValue>
 
 <hr />
 
-<CascadingValueProvider Values=@(new() { ("Name", "Saleh Xafan"), ("Age", 41), ("Gender", "Male") })>
-    <Cascading />
-</CascadingValueProvider>
+<ManualProvider>
+    <CascadingParam Title="ManualProvider" />
+</ManualProvider>
 
 <hr />
 
-<ManualProvider>
-    <Cascading />
-</ManualProvider>
+<CascadingValueProvider Values="@(new() { ("Name", "Saleh Xafan"), ("Age", 41), ("Gender", "Male") })">
+    <CascadingParam Title="CascadingValueProvider" />
+</CascadingValueProvider>

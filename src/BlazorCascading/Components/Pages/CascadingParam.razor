@@ -1,0 +1,22 @@
+﻿@rendermode InteractiveServer
+
+<h3>@Title</h3>
+
+<div>Name: [@Name]</div>
+<div>Age: [@Age]</div>
+<div>Gender: [@Gender]</div>
+
+@code {
+    [CascadingParameter(Name = "Gender")]
+    public string Gender { get; set; } = "N/A";
+
+    [CascadingParameter(Name = "Age")]
+    public int Age { get; set; }
+
+    [CascadingParameter(Name = "Name")]
+    public string Name { get; set; } = "";
+
+
+    [Parameter]
+    public string Title { get; set; } = "CascadingParam";
+}

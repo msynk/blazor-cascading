@@ -22,12 +22,9 @@ public class ManualProvider : ComponentBase
         base.BuildRenderTree(builder);
     }
 
-    private static readonly Type _cascadingValueType = typeof(CascadingValue<>);
-
-    public static void CreateCascadingValue(RenderTreeBuilder builder, int seq, string name, object value, RenderFragment child)
+    public static void CreateCascadingValue<T>(RenderTreeBuilder builder, int seq, string name, T value, RenderFragment child)
     {
-        Console.WriteLine($"seq:{seq}, Name:{name}");
-        builder.OpenComponent(seq, _cascadingValueType.MakeGenericType(value.GetType()));
+        builder.OpenComponent<CascadingValue<T>>(seq);
         builder.AddComponentParameter(++seq, "Name", name);
         builder.AddComponentParameter(++seq, "Value", value);
         builder.AddComponentParameter(++seq, "ChildContent", child);
