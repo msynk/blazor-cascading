@@ -24,10 +24,10 @@
 
 @code {
     static string? v = null;
-    private List<CascadingValueRecord> values = new()
+    private List<CascadingValueRecord> values = new CascadingValueList
     {
-        CascadingValueRecord.From("Name", "Saleh Xafan"),
-        CascadingValueRecord.From("Age", 41),
-        CascadingValueRecord.From("Gender", v)
+        { "Name", "Saleh Xafan" },
+        { "Age", 41 },
+        { "Gender", v }
     };
 }
