@@ -4,7 +4,7 @@
 
 <CascadingValue Name="Name" Value="@("Saleh Xafan")">
     <CascadingValue Name="Age" Value="41">
-        <CascadingValue Name="Gender" Value="@(null)" TValue="string">
+        <CascadingValue Name="Gender" Value="v">
             <CascadingParam Title="CascadingValue" />
         </CascadingValue>
     </CascadingValue>
@@ -24,5 +24,10 @@
 
 @code {
     static string? v = null;
-    private List<CascadingValueRecord> values = new() { new("Name", "Saleh Xafan"), new("Age", 41), new("Gender", v, typeof(string)) };
+    private List<CascadingValueRecord> values = new()
+    {
+        CascadingValueRecord.From("Name", "Saleh Xafan"),
+        CascadingValueRecord.From("Age", 41),
+        CascadingValueRecord.From("Gender", v)
+    };
 }

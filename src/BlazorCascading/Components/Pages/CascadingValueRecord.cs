@@ -1,8 +1,19 @@
-﻿namespace BlazorCascading.Components.Pages;
+namespace BlazorCascading.Components.Pages;
 
-public class CascadingValueRecord(string? name, object? value, Type? valuetype = null)
+public class CascadingValueRecord
 {
-    public string? Name { get; } = name;
-    public object? Value { get; } = value;
-    public Type ValueType { get; } = valuetype ?? value?.GetType() ?? throw new InvalidOperationException("Value type is missing");
+    private CascadingValueRecord(string? name, object? value, Type valueType)
+    {
+        Name = name;
+        Value = value;
+        ValueType = valueType ?? throw new ArgumentNullException(nameof(valueType));
+    }
+
+    public string? Name { get; }
+    public object? Value { get; }
+    public Type ValueType { get; }
+
+    public static CascadingValueRecord From<T>(string? name, T value) => new(name, value, typeof(T));
+
+    public static CascadingValueRecord From(string? name, object? value, Type valueType) => new(name, value, valueType);
 }
