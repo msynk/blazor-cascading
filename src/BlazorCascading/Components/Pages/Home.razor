@@ -17,16 +17,10 @@
 
 <hr />
 
-<CascadingValueProvider Values="values">
+<CascadingValueProvider Values="@(new() { "Saleh Xafan", 41, { v, "Gender" } })">
     <CascadingParam Title="CascadingValueProvider" />
 </CascadingValueProvider>
 
 @code {
     static string? v = null;
-    private CascadingValueList values = new()
-    {
-        "Saleh Xafan",
-        41,
-        { v, "Gender"}
-    };
 }
