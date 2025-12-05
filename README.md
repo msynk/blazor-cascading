@@ -1,2 +1,2 @@
 # blazor-cascading
-playing with Blazor cascading value and parameters
+Experimenting with Blazor cascading value and parameters
